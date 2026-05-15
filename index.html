@@ -3,51 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Greatness | Portfolio</title>
+  <title>Greatness | Modern Portfolio</title>
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
   <style>
+
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
       scroll-behavior:smooth;
-      font-family: Arial, sans-serif;
     }
 
     body{
-      background:#0f172a;
+      font-family:'Poppins', sans-serif;
+      background:#020617;
       color:white;
-      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* CUSTOM SCROLLBAR */
+    ::-webkit-scrollbar{
+      width:10px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background:#38bdf8;
+      border-radius:20px;
+    }
+
+    /* BACKGROUND GLOW */
+    body::before{
+      content:'';
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:#38bdf8;
+      filter:blur(180px);
+      top:-100px;
+      left:-100px;
+      opacity:0.25;
+      z-index:-1;
+    }
+
+    body::after{
+      content:'';
+      position:fixed;
+      width:400px;
+      height:400px;
+      background:#7c3aed;
+      filter:blur(180px);
+      bottom:-100px;
+      right:-100px;
+      opacity:0.2;
+      z-index:-1;
     }
 
     /* NAVBAR */
     nav{
+      width:100%;
       display:flex;
       justify-content:space-between;
       align-items:center;
       padding:20px 10%;
-      position:sticky;
+      position:fixed;
       top:0;
-      background:#0f172a;
       z-index:1000;
+      backdrop-filter:blur(15px);
+      background:rgba(2,6,23,0.7);
       border-bottom:1px solid rgba(255,255,255,0.1);
     }
 
     nav h2{
+      font-size:30px;
       color:#38bdf8;
-      font-size:28px;
+      font-weight:700;
     }
 
     nav ul{
       display:flex;
+      gap:25px;
       list-style:none;
-      gap:20px;
     }
 
     nav ul li a{
       text-decoration:none;
       color:white;
       transition:0.3s;
+      font-weight:500;
+      position:relative;
+    }
+
+    nav ul li a::after{
+      content:'';
+      width:0%;
+      height:2px;
+      background:#38bdf8;
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover::after{
+      width:100%;
     }
 
     nav ul li a:hover{
@@ -60,110 +128,203 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:50px 10%;
+      text-align:center;
+      padding:120px 10%;
     }
 
     .hero-content{
-      max-width:700px;
-      text-align:center;
+      max-width:800px;
+      animation:fadeUp 1.2s ease;
     }
 
     .hero h1{
-      font-size:60px;
-      margin-bottom:15px;
+      font-size:70px;
+      line-height:1.2;
+      margin-bottom:20px;
     }
 
     .hero h1 span{
       color:#38bdf8;
     }
 
+    .typing{
+      color:#7dd3fc;
+      font-weight:600;
+    }
+
     .hero p{
-      font-size:20px;
       color:#cbd5e1;
-      margin-bottom:30px;
+      font-size:20px;
+      margin-bottom:35px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
     }
 
     .btn{
-      display:inline-block;
-      padding:14px 30px;
-      background:#38bdf8;
-      color:#0f172a;
+      padding:14px 34px;
+      border-radius:50px;
       text-decoration:none;
-      border-radius:8px;
-      font-weight:bold;
-      transition:0.3s;
+      font-weight:600;
+      transition:0.4s;
+      display:inline-block;
     }
 
-    .btn:hover{
+    .primary-btn{
+      background:#38bdf8;
+      color:#020617;
+      box-shadow:0 0 25px #38bdf8;
+    }
+
+    .primary-btn:hover{
+      transform:translateY(-5px);
       background:white;
     }
 
-    /* ABOUT */
-    .section{
-      padding:80px 10%;
+    .secondary-btn{
+      border:2px solid #38bdf8;
+      color:#38bdf8;
+    }
+
+    .secondary-btn:hover{
+      background:#38bdf8;
+      color:#020617;
+      transform:translateY(-5px);
+    }
+
+    /* SECTION */
+    section{
+      padding:100px 10%;
     }
 
     .section-title{
       text-align:center;
-      font-size:40px;
-      margin-bottom:40px;
+      font-size:45px;
+      margin-bottom:60px;
       color:#38bdf8;
+      position:relative;
     }
 
+    .section-title::after{
+      content:'';
+      width:80px;
+      height:4px;
+      background:#38bdf8;
+      position:absolute;
+      bottom:-12px;
+      left:50%;
+      transform:translateX(-50%);
+      border-radius:20px;
+    }
+
+    /* ABOUT */
     .about{
-      text-align:center;
-      max-width:800px;
-      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:40px;
+      align-items:center;
+    }
+
+    .about-text{
       color:#cbd5e1;
       font-size:18px;
+      line-height:1.8;
+    }
+
+    .about-card{
+      background:rgba(30,41,59,0.7);
+      padding:40px;
+      border-radius:25px;
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(10px);
+      transition:0.4s;
+    }
+
+    .about-card:hover{
+      transform:translateY(-10px);
     }
 
     /* SKILLS */
     .skills{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-      gap:20px;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:25px;
     }
 
     .skill-box{
-      background:#1e293b;
-      padding:30px;
-      border-radius:15px;
+      background:rgba(30,41,59,0.7);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:40px 25px;
+      border-radius:25px;
       text-align:center;
-      transition:0.3s;
+      transition:0.4s;
+      backdrop-filter:blur(10px);
     }
 
     .skill-box:hover{
-      transform:translateY(-5px);
-      background:#334155;
+      transform:translateY(-10px) scale(1.03);
+      box-shadow:0 0 30px rgba(56,189,248,0.3);
+    }
+
+    .skill-box i{
+      font-size:50px;
+      color:#38bdf8;
+      margin-bottom:20px;
     }
 
     .skill-box h3{
-      color:#38bdf8;
-      margin-bottom:10px;
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .skill-box p{
+      color:#cbd5e1;
     }
 
     /* PROJECTS */
     .projects{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-      gap:25px;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
     }
 
     .project-card{
-      background:#1e293b;
-      padding:25px;
-      border-radius:15px;
-      transition:0.3s;
+      background:rgba(30,41,59,0.7);
+      padding:30px;
+      border-radius:25px;
+      transition:0.4s;
+      border:1px solid rgba(255,255,255,0.1);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .project-card::before{
+      content:'';
+      position:absolute;
+      width:100%;
+      height:5px;
+      background:#38bdf8;
+      top:0;
+      left:0;
     }
 
     .project-card:hover{
-      transform:scale(1.03);
+      transform:translateY(-10px);
+      box-shadow:0 0 30px rgba(56,189,248,0.3);
     }
 
     .project-card h3{
       color:#38bdf8;
-      margin-bottom:10px;
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .project-card p{
+      color:#cbd5e1;
     }
 
     /* CONTACT */
@@ -172,16 +333,70 @@
     }
 
     .contact p{
-      margin-bottom:20px;
       color:#cbd5e1;
+      margin-bottom:25px;
+      font-size:18px;
     }
 
+    .socials{
+      margin-top:30px;
+      display:flex;
+      justify-content:center;
+      gap:20px;
+    }
+
+    .socials a{
+      width:55px;
+      height:55px;
+      border-radius:50%;
+      background:#1e293b;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-decoration:none;
+      color:#38bdf8;
+      font-size:22px;
+      transition:0.4s;
+    }
+
+    .socials a:hover{
+      background:#38bdf8;
+      color:#020617;
+      transform:translateY(-5px);
+    }
+
+    /* FOOTER */
     footer{
       text-align:center;
-      padding:20px;
-      background:#020617;
+      padding:25px;
       color:#94a3b8;
+      border-top:1px solid rgba(255,255,255,0.1);
       margin-top:50px;
+    }
+
+    /* SCROLL ANIMATION */
+    .hidden{
+      opacity:0;
+      transform:translateY(40px);
+      transition:all 1s ease;
+    }
+
+    .show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* KEYFRAMES */
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(50px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
     }
 
     /* MOBILE */
@@ -198,7 +413,7 @@
       }
 
       .hero h1{
-        font-size:40px;
+        font-size:45px;
       }
 
       .hero p{
@@ -206,16 +421,18 @@
       }
 
       .section-title{
-        font-size:32px;
+        font-size:35px;
       }
     }
 
   </style>
 </head>
+
 <body>
 
   <!-- NAVBAR -->
   <nav>
+
     <h2>Greatness</h2>
 
     <ul>
@@ -225,103 +442,274 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="home">
+
     <div class="hero-content">
-      <h1>Hello, I'm <span>Greatness</span> 🚀</h1>
+
+      <h1>
+        Hi, I'm <span>Greatness</span>
+      </h1>
 
       <p>
-        A creative web developer passionate about building
-        beautiful, responsive, and modern websites.
+        I'm a <span class="typing"></span>
       </p>
 
-      <a href="#projects" class="btn">View My Work</a>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn primary-btn">
+          View Projects
+        </a>
+
+        <a href="#contact" class="btn secondary-btn">
+          Hire Me
+        </a>
+      </div>
+
     </div>
+
   </section>
 
   <!-- ABOUT -->
-  <section class="section" id="about">
+  <section id="about" class="hidden">
+
     <h2 class="section-title">About Me</h2>
 
     <div class="about">
-      <p>
-        I am Greatness, a frontend developer who enjoys creating
-        clean and user-friendly websites. I focus on responsive
-        design, smooth user experience, and modern web technologies.
-      </p>
+
+      <div class="about-card">
+        <h3>Frontend Developer 🚀</h3>
+
+        <p class="about-text">
+          I create beautiful, modern, and responsive websites with
+          smooth animations and great user experiences.
+          I love turning ideas into stunning digital products.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>Creative Thinker 🎨</h3>
+
+        <p class="about-text">
+          Passionate about modern UI/UX design,
+          interactive animations, and writing clean code
+          using HTML, CSS, and JavaScript.
+        </p>
+      </div>
+
     </div>
+
   </section>
 
   <!-- SKILLS -->
-  <section class="section" id="skills">
+  <section id="skills" class="hidden">
+
     <h2 class="section-title">Skills</h2>
 
     <div class="skills">
 
       <div class="skill-box">
-        <h3>HTML</h3>
-        <p>Building clean website structures.</p>
+        <i class="fa-brands fa-html5"></i>
+        <h3>HTML5</h3>
+        <p>Clean and semantic website structures.</p>
       </div>
 
       <div class="skill-box">
-        <h3>CSS</h3>
-        <p>Designing responsive and modern layouts.</p>
+        <i class="fa-brands fa-css3-alt"></i>
+        <h3>CSS3</h3>
+        <p>Modern responsive and animated layouts.</p>
       </div>
 
       <div class="skill-box">
+        <i class="fa-brands fa-js"></i>
         <h3>JavaScript</h3>
-        <p>Adding interactivity and dynamic features.</p>
+        <p>Interactive and dynamic web experiences.</p>
       </div>
 
       <div class="skill-box">
-        <h3>Responsive Design</h3>
-        <p>Making websites look good on all devices.</p>
+        <i class="fa-solid fa-mobile-screen"></i>
+        <h3>Responsive</h3>
+        <p>Perfect display on mobile and desktop.</p>
       </div>
 
     </div>
+
   </section>
 
   <!-- PROJECTS -->
-  <section class="section" id="projects">
+  <section id="projects" class="hidden">
+
     <h2 class="section-title">Projects</h2>
 
     <div class="projects">
 
       <div class="project-card">
         <h3>Portfolio Website</h3>
-        <p>A personal portfolio with modern UI and responsive layout.</p>
+        <p>
+          A modern animated portfolio website with smooth scrolling.
+        </p>
       </div>
 
       <div class="project-card">
         <h3>Landing Page</h3>
-        <p>A stylish landing page designed for mobile and desktop users.</p>
+        <p>
+          Responsive landing page with clean UI and animations.
+        </p>
       </div>
 
       <div class="project-card">
         <h3>Business Website</h3>
-        <p>A professional business website with clean navigation.</p>
+        <p>
+          Professional business website with elegant design.
+        </p>
       </div>
 
     </div>
+
   </section>
 
   <!-- CONTACT -->
-  <section class="section contact" id="contact">
-    <h2 class="section-title">Contact</h2>
+  <section id="contact" class="contact hidden">
 
-    <p>Email: greatness@example.com</p>
+    <h2 class="section-title">Contact Me</h2>
 
-    <a href="mailto:greatness@example.com" class="btn">
-      Contact Me
+    <p>
+      Let's build something amazing together.
+    </p>
+
+    <a href="mailto:greatness@example.com"
+    class="btn primary-btn">
+      Send Email
     </a>
+
+    <div class="socials">
+
+      <a href="#"><i class="fa-brands fa-github"></i></a>
+
+      <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+
+      <a href="#"><i class="fa-brands fa-twitter"></i></a>
+
+    </div>
+
   </section>
 
   <!-- FOOTER -->
   <footer>
     <p>© 2026 Greatness. All Rights Reserved.</p>
   </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    /* TYPING EFFECT */
+
+    const typingText = document.querySelector(".typing");
+
+    const words = [
+      "Frontend Developer",
+      "Creative Designer",
+      "JavaScript Enthusiast",
+      "UI/UX Lover"
+    ];
+
+    let wordIndex = 0;
+    let letterIndex = 0;
+    let currentWord = "";
+    let currentLetters = "";
+
+    function type(){
+
+      if(wordIndex < words.length){
+
+        currentWord = words[wordIndex];
+
+        currentLetters = currentWord.slice(0, ++letterIndex);
+
+        typingText.textContent = currentLetters;
+
+        if(currentLetters.length == currentWord.length){
+
+          wordIndex++;
+
+          letterIndex = 0;
+
+          setTimeout(type, 1200);
+
+        }else{
+          setTimeout(type, 100);
+        }
+
+        if(wordIndex == words.length){
+          wordIndex = 0;
+        }
+      }
+    }
+
+    type();
+
+    /* SCROLL ANIMATION */
+
+    const hiddenElements =
+    document.querySelectorAll('.hidden');
+
+    const observer =
+    new IntersectionObserver((entries)=>{
+
+      entries.forEach((entry)=>{
+
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+
+      });
+
+    });
+
+    hiddenElements.forEach((el)=>
+    observer.observe(el));
+
+    /* NAVBAR ACTIVE LINK */
+
+    const sections =
+    document.querySelectorAll("section");
+
+    const navLinks =
+    document.querySelectorAll("nav ul li a");
+
+    window.addEventListener("scroll", ()=>{
+
+      let current = "";
+
+      sections.forEach(section => {
+
+        const sectionTop = section.offsetTop;
+
+        if(pageYOffset >= sectionTop - 200){
+          current = section.getAttribute("id");
+        }
+
+      });
+
+      navLinks.forEach(a => {
+
+        a.classList.remove("active");
+
+        if(a.getAttribute("href")
+        === "#" + current){
+
+          a.classList.add("active");
+        }
+
+      });
+
+    });
+
+  </script>
 
 </body>
 </html>
